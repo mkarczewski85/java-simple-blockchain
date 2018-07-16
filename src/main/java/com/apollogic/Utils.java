@@ -13,7 +13,7 @@ public class Utils {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(input.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
+            StringBuilder hexString = new StringBuilder();
             for (int i = 0; i < hash.length; i++) {
                 String hex = Integer.toHexString(0xff & hash[i]);
                 if (hex.length() == 1) hexString.append('0');
@@ -37,15 +37,15 @@ public class Utils {
         for (int i = 1; i < blockchain.size(); i++) {
             currentBlock = blockchain.get(i);
             previousBlock = blockchain.get(i - 1);
-            if (!previousBlock.hash.equals(currentBlock.previousHash)) {
+            if (!previousBlock.getHash().equals(currentBlock.getPreviousHash())) {
                 logger.error("Previous hashes are not equal");
                 return false;
             }
-            if (!currentBlock.hash.substring(0, difficulty).equals(hashTarget)) {
+            if (!currentBlock.getHash().substring(0, difficulty).equals(hashTarget)) {
                 logger.error("This block hasn't been mined");
                 return false;
             }
-            if (!currentBlock.hash.equals(currentBlock.calculateHash())) {
+            if (!currentBlock.getHash().equals(currentBlock.calculateHash())) {
                 logger.error("Current hashes are not equal");
                 return false;
             }

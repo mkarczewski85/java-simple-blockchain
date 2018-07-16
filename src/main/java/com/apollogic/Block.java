@@ -1,13 +1,12 @@
 package com.apollogic;
 
 import org.apache.log4j.Logger;
-
 import java.util.Date;
 
 public class Block {
 
-    public String hash;
-    public String previousHash;
+    private String hash;
+    private String previousHash;
     private String data;
     private long timestamp;
     private int nonce;
@@ -41,5 +40,23 @@ public class Block {
         this.data = data;
     }
 
+    public String getData() {
+        return data;
+    }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getPreviousHash() {
+        return previousHash;
+    }
+
+    public void setPreviousHash(String previousHash) {
+        this.previousHash = previousHash;
+    }
 }

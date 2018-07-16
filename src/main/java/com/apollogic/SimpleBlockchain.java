@@ -9,8 +9,8 @@ public class SimpleBlockchain {
 
     private static final Logger logger = Logger.getLogger(SimpleBlockchain.class);
 
-    public static ArrayList<Block> blockchain = new ArrayList<Block>();
-    public static int difficulty = 5;
+    private static ArrayList<Block> blockchain = new ArrayList<Block>();
+    private static int difficulty = 5;
 
     public static void main(String[] args) {
 
@@ -20,25 +20,25 @@ public class SimpleBlockchain {
 
         pressAnyKey();
 
-        blockchain.add(new Block("This is Block #2", blockchain.get(blockchain.size() - 1).hash));
+        blockchain.add(new Block("This is Block #2", blockchain.get(blockchain.size() - 1).getHash()));
         logger.info("Mining Block 2 ");
         blockchain.get(1).mineBlock(difficulty);
 
         pressAnyKey();
 
-        blockchain.add(new Block("This is Block #3", blockchain.get(blockchain.size() - 1).hash));
+        blockchain.add(new Block("This is Block #3", blockchain.get(blockchain.size() - 1).getHash()));
         logger.info("Mining Block 3... ");
         blockchain.get(2).mineBlock(difficulty);
 
         pressAnyKey();
 
-        blockchain.add(new Block("This is Block #4", blockchain.get(blockchain.size() - 1).hash));
+        blockchain.add(new Block("This is Block #4", blockchain.get(blockchain.size() - 1).getHash()));
         logger.info("Mining Block 4... ");
         blockchain.get(3).mineBlock(difficulty);
 
         pressAnyKey();
 
-        blockchain.add(new Block("This is Block #5", blockchain.get(blockchain.size() - 1).hash));
+        blockchain.add(new Block("This is Block #5", blockchain.get(blockchain.size() - 1).getHash()));
         logger.info("Mining Block 5... ");
         blockchain.get(4).mineBlock(difficulty);
 
@@ -69,10 +69,11 @@ public class SimpleBlockchain {
         logger.info("Blockchain is valid: " + Utils.isChainValid(blockchain, difficulty));
     }
 
-    public static void pressAnyKey(){
+    private static void pressAnyKey(){
         try {
             System.in.read();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
